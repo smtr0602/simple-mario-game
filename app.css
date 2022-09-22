@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Press Start 2P', cursive;
+}
+html,
+body {
+  overflow: hidden;
+}
+
+img {
+  position: absolute;
+}
+
+.field {
+  background: green;
+  width: 700px;
+  height: 700px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.score-wrap {
+  background: blanchedalmond;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#avatar {
+  width: 100px;
+}
+#avatar.isFacedLeft {
+  transform: rotateY(180deg);
+}
+
+#coin {
+  width: 50px;
+}
+
+#bullet {
+  animation: bullet 3000ms infinite linear;
+  width: 100px;
+}
+
+.gameover #avatar {
+  animation: gameover 3000ms linear;
+}
+
+@keyframes bullet {
+  0% {
+    transform: translateX(1500px);
+  }
+
+  100% {
+    transform: translateX(-1500px);
+  }
+}
+
+@keyframes gameover {
+  5% {
+    transform: translateY(-80px);
+  }
+  20% {
+    transform: translateY(-200px);
+  }
+  50% {
+    transform: translateY(500px);
+  }
+  70% {
+    transform: translateY(800px);
+  }
+  100% {
+    transform: translateY(1000px);
+  }
+}
