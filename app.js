@@ -44,30 +44,6 @@ const manageFacingDirection = (movingDirection) => {
   }
 };
 
-const isOutsideField = (movingDirection) => {
-  if (movingDirection === 'ArrowUp' || movingDirection === 'Up') {
-    return (
-      avatar.getBoundingClientRect().top < field.getBoundingClientRect().top
-    );
-  }
-  if (movingDirection === 'ArrowDown' || movingDirection === 'Down') {
-    return (
-      avatar.getBoundingClientRect().bottom >
-      field.getBoundingClientRect().bottom
-    );
-  }
-  if (movingDirection === 'ArrowRight' || movingDirection === 'Right') {
-    return (
-      avatar.getBoundingClientRect().right > field.getBoundingClientRect().right
-    );
-  }
-  if (movingDirection === 'ArrowLeft' || movingDirection === 'Left') {
-    return (
-      avatar.getBoundingClientRect().left < field.getBoundingClientRect().left
-    );
-  }
-};
-
 const isTouching = (a, b) => {
   const aRect = a.getBoundingClientRect();
   const bRect = b.getBoundingClientRect();
@@ -107,22 +83,36 @@ const updateScore = (newScore) => {
 };
 
 window.addEventListener('keyup', (e) => {
-  if (isOutsideField(e.key)) return;
-  stepSound.play();
   if (e.key === 'ArrowUp' || e.key === 'Up') {
+    if (avatar.getBoundingClientRect().top < field.getBoundingClientRect().top)
+      return;
     movePosition(avatar, -50, 'vertical');
   }
   if (e.key === 'ArrowDown' || e.key === 'Down') {
+    if (
+      avatar.getBoundingClientRect().bottom >
+      field.getBoundingClientRect().bottom
+    )
+      return;
     movePosition(avatar, 50, 'vertical');
   }
   if (e.key === 'ArrowRight' || e.key === 'Right') {
+    if (
+      avatar.getBoundingClientRect().right > field.getBoundingClientRect().right
+    )
+      return;
     movePosition(avatar, 50, 'horizontal');
     manageFacingDirection('right');
   }
   if (e.key === 'ArrowLeft' || e.key === 'Left') {
+    if (
+      avatar.getBoundingClientRect().left < field.getBoundingClientRect().left
+    )
+      return;
     movePosition(avatar, -50, 'horizontal');
     manageFacingDirection('left');
   }
+  stepSound.play();
   if (isTouching(avatar, coin)) {
     coinSound.play();
     updateScore();
