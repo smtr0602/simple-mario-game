@@ -46,20 +46,25 @@ const manageFacingDirection = (movingDirection) => {
 
 const isOutsideField = (movingDirection) => {
   if (movingDirection === 'ArrowUp' || movingDirection === 'Up') {
-    const currTop = extractPos(avatar.style.top);
-    return currTop + 50 < field.getBoundingClientRect().top;
+    return (
+      avatar.getBoundingClientRect().top < field.getBoundingClientRect().top
+    );
   }
   if (movingDirection === 'ArrowDown' || movingDirection === 'Down') {
-    const currTop = extractPos(avatar.style.top);
-    return currTop + 100 > field.getBoundingClientRect().bottom;
+    return (
+      avatar.getBoundingClientRect().bottom >
+      field.getBoundingClientRect().bottom
+    );
   }
   if (movingDirection === 'ArrowRight' || movingDirection === 'Right') {
-    const currLeft = extractPos(avatar.style.left);
-    return currLeft + 150 > field.getBoundingClientRect().right;
+    return (
+      avatar.getBoundingClientRect().right > field.getBoundingClientRect().right
+    );
   }
   if (movingDirection === 'ArrowLeft' || movingDirection === 'Left') {
-    const currLeft = extractPos(avatar.style.left);
-    return currLeft + 100 < field.getBoundingClientRect().left;
+    return (
+      avatar.getBoundingClientRect().left < field.getBoundingClientRect().left
+    );
   }
 };
 
